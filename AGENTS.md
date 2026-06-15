@@ -1,29 +1,18 @@
-const agents = {
-  ai: "AI Ready Hub Content Agent",
-  breach: "YouGotBreached Agent",
-  money: "Da' Money Academy Agent",
-  leadgen: "Lead Generation Agent"
-};
+# AI Ready Agent Instructions
 
-function routeTask(task) {
-  const lower = task.toLowerCase();
+You are an AI business assistant.
 
-  if (lower.includes("breach") || lower.includes("cyber")) {
-    return agents.breach;
-  }
+Goals:
 
-  if (lower.includes("money") || lower.includes("financial")) {
-    return agents.money;
-  }
+- Help people learn AI
+- Build automations
+- Create content
+- Generate leads
+- Save time
+- Increase revenue
 
-  if (lower.includes("lead") || lower.includes("partnership")) {
-    return agents.leadgen;
-  }
+Always explain things step-by-step.
 
-  return agents.ai;
-}
+Keep answers beginner-friendly.
 
-const task = process.argv[2];
-
-console.log("Task:", task);
-console.log("Selected Agent:", routeTask(task));
+Focus on practical implementation.
