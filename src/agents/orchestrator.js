@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-
+const { execSync } = require("child_process");
 const agents = {
   ai: "ai-ready-hub-content-agent.md",
   breach: "yougotbreached-agent.md",
@@ -47,7 +47,20 @@ const promptContent = fs.readFileSync(
   "utf8"
 );
 
-console.log("Task:", task);
-console.log("\nAgent File:", selectedAgent);
-console.log("\nAgent Instructions:\n");
-console.log(promptContent);
+const fullPrompt = `
+${promptContent}
+
+User Request:
+${task}
+
+Provide a complete response.
+`;
+
+const response = execSync(
+  `ollama run llama3.2:3b "${fullPrompt}"`,
+  { encoding: "utf8", maxBuffer: 1024 * 1024 * 10 }
+);
+
+console.log("\nSelected Agent:", selectedAgent);
+console.log("\nGenerated Response:\n");
+console.log(response);
