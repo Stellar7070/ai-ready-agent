@@ -87,3 +87,27 @@ const response = execSync(
 console.log("\nSelected Agent:", selectedAgent);
 console.log("\nGenerated Response:\n");
 console.log(response);
+const folderMap = {
+  "ai-ready-hub-content-agent.md": "ai-ready",
+  "damoney-academy-agent.md": "damoney",
+  "leadgen-agent.md": "leadgen",
+  "yougotbreached-agent.md": "yougotbreached"
+};
+const outputFolder =
+  folderMap[selectedAgent];
+const outputFile =
+  path.join(
+    __dirname,
+    "../../outputs",
+    outputFolder,
+    `${Date.now()}.txt`
+  );
+fs.writeFileSync(
+  outputFile,
+  response,
+  "utf8"
+);
+console.log(
+  "\nSaved To:",
+  outputFile
+);
